@@ -9,7 +9,7 @@ const routes = {
 }
 
 const currentPath = ref(window.location.hash)
-const drawer = ref(true);
+const drawer = ref(false);
 
 window.addEventListener('hashchange', () => {
     currentPath.value = window.location.hash
@@ -22,8 +22,8 @@ const currentView = computed(() => {
 </script>
 
 <template>
-    <v-app>
-        <v-navigation-drawer color="blue" v-model="drawer">
+    <v-app class="bg-black">
+        <v-navigation-drawer color="grey-darken-4" v-model="drawer" class="audiowide-regular">
             <v-list-item
                 prepend-icon="mdi-home"
                 href="#/"
@@ -37,13 +37,28 @@ const currentView = computed(() => {
                 @click="drawer = !drawer"
             ></v-list-item>
         </v-navigation-drawer>
-        <v-app-bar>
+        <v-app-bar
+            color="indigo-darken-4"
+            height="100"
+        >
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-app-bar-title>Exoplanet Explorer</v-app-bar-title>
+            <v-app-bar-title class="audiowide-regular mainHeader">Exoplanet Explorer</v-app-bar-title>
         </v-app-bar>
         <v-main>
             <component :is="currentView"></component>
         </v-main>
-        <v-footer app="true">Copyright 2026</v-footer>
     </v-app>
 </template>
+
+<style>
+.mainHeader {
+    line-height: 1.4 !important;
+    font-size: 50px !important;
+}
+
+.audiowide-regular {
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+</style>
