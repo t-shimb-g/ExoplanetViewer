@@ -42,7 +42,7 @@ const currentView = computed(() => {
             height="100"
         >
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-app-bar-title class="audiowide-regular mainHeader">Exoplanet Explorer</v-app-bar-title>
+            <v-app-bar-title class="audiowide-regular mainHeader">Board Games Galore</v-app-bar-title>
         </v-app-bar>
         <v-main>
             <component :is="currentView"></component>

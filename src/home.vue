@@ -1,20 +1,35 @@
 <script setup>
 const cardInfo = [
     {
-        title: "Explore",
-        desc: "Click here to start exploring",
-        image: "placeholder2.png"
+        title: "Chess",
+        desc: "Two players maneuver distinct pieces across a grid to checkmate the king.",
+        image: "chess.jpg"
     },
     {
-        title: "Planet of the Day",
-        desc: "Check out today's planet",
-        image: "placeholder3.png"
+        title: "Checkers",
+        desc: "Players move diagonal pieces to capture the opponent by jumping over them.",
+        image: "checkers.png"
     },
     {
-        title: "Card 3",
-        desc: "Card 3 description, cool stuff here!",
-        image: "placeholder1.png"
-    }
+        title: "Tic-Tac-Toe",
+        desc: "Players take turns marking a 3×3 grid, trying to get three in a row.",
+        image: "tictactoe.jpg"
+    },
+    {
+        title: "Connect 1 Less than 5",
+        desc: "Players drop discs into a vertical grid, aiming to form a line of one less than five.",
+        image: "connect4.PNG"
+    },
+    {
+        title: "Super Tic-Tac-Toe",
+        desc: "A big Tic‑Tac‑Toe made of smaller boards where each move decides which mini‑board the next player must use.",
+        image: "supertictactoe.png"
+    },
+    {
+        title: "Othello",
+        desc: "Players flip opponent discs by trapping them between their own pieces.",
+        image: "othello.jpg"
+    },
 ]
 </script>
 
@@ -29,13 +44,13 @@ const cardInfo = [
                 md="4"
             >
                 <v-card border="sm" color="grey-darken-3" class="quantico-bold">
-                    <v-img :src="item.image" height="300" cover/>
+                    <v-img :src="item.image" height="500px" cover/>
                     <v-card-title>{{ item.title }}</v-card-title>
                     <v-card-subtitle>{{ item.desc }}</v-card-subtitle>
                     <v-card-text>{{ item.description }}</v-card-text>
                     <v-btn class="ml-5 mb-5">
-                        <v-icon start>mdi-space-station</v-icon>
-                        Visit
+                        <v-icon start>mdi-play-circle-outline</v-icon>
+                        Play!
                     </v-btn>
                 </v-card>
             </v-col>
