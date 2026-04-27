@@ -11,7 +11,7 @@ async function loadGames() {
     error.value = '';
 
     try {
-        const response = await fetch('http://localhost:3000/games')
+        const response = await fetch('/api/games')
 
         if (!response.ok) {
             throw new Error('Failed to load games');
