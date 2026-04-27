@@ -1,11 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue'
 import home from './home.vue'
-import about from './about.vue'
+import games from './games.vue'
 
 const routes = {
     '/': home,
-    '/about': about,
+    '/games': games
 }
 
 const currentPath = ref(window.location.hash)
@@ -32,8 +32,8 @@ const currentView = computed(() => {
             ></v-list-item>
             <v-list-item
                 prepend-icon="mdi-information-variant-circle-outline"
-                href="#/about"
-                title="About Us"
+                href="#/games"
+                title="Games"
                 @click="drawer = !drawer"
             ></v-list-item>
         </v-navigation-drawer>
