@@ -20,11 +20,7 @@ window.addEventListener('hashchange', () => {
     currentPath.value = window.location.hash
 })
 
-// const currentView = computed(() => {
-//     return routes[currentPath.value.slice(1) || '/'] || NotFound
-// })
 const gameComponents = { connect4, ttt }
-
 const currentView = computed(() => {
     const path = currentPath.value.slice(1) || '/'
     const segments = path.split('/').filter(Boolean)

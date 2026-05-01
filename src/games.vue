@@ -29,6 +29,12 @@ async function loadGames() {
             enabled: game.enabled
         }))
 
+        const favResponse = await fetch('http://localhost:3000/fav');
+
+        if(!favResponse.ok) {
+            throw new Error('Failed to load favorites')
+        }
+
     } catch (err) {
         error.value = err.message || 'Something went wrong while loading games'
     } finally {
