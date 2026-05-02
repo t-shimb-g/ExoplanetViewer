@@ -2,9 +2,13 @@
 const props = defineProps({
     name: { type: String, required: true },
     desc: { type: String, required: true },
-    img: { type: String, required: true }
+    img: { type: String, required: true },
+    route: { type: String, required: true },
+    enabled: { type: Number, default: false, required: true }, // 0 or 1
+    favorite: { type: Boolean, default: false, required: true },
 })
 
+const emit = defineEmits(['favorite-game']);
 </script>
 
 <template>
@@ -12,9 +16,19 @@ const props = defineProps({
         <v-img v-if="img" :src="img" height="500px" cover/>
         <v-card-title>{{ name }}</v-card-title>
         <v-card-text>{{ desc }}</v-card-text>
-        <v-btn class="ml-5 mb-5">
+        <v-btn class="ml-5 mb-5" :href="'#/games/' + route" :disabled="enabled === 0"> <!-- 1 = enabled -->
             <v-icon start>mdi-play-circle-outline</v-icon>
             Play!
         </v-btn>
+        <v-btn class="favorite-btn mb-5 mr-5" @click="emit('favorite-game')">
+            <v-icon v-if="!favorite">mdi-heart-outline</v-icon>
+            <v-icon v-if="favorite">mdi-heart</v-icon>
+        </v-btn>
     </v-card>
 </template>
+
+<style scoped>
+    .favorite-btn {
+        margin-left: 368px;
+    }
+</style>
