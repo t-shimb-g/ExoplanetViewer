@@ -48,13 +48,13 @@ function reset() {
     <v-container class="mt-6" style="width: 540px">
         <h2
             v-if="winningLine.length === 0"
-            class="audiowide-regular turn-indicator d-flex mx-auto"
+            class="quantico turn-indicator d-flex mx-auto"
         >
             {{ currentPlayer }}'s turn
         </h2>
         <h2
             v-if="winningLine.length !== 0"
-            class="audiowide-regular turn-indicator d-flex mx-auto"
+            class="quantico turn-indicator d-flex mx-auto"
         >
             {{ winner }} wins!
         </h2>
@@ -78,6 +78,12 @@ function reset() {
 </template>
 
 <style scoped>
+.quantico {
+    font-family: "Quantico", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
 .cell {
     width: 150px;
     height: 150px;

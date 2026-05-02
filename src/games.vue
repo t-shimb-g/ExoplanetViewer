@@ -3,6 +3,7 @@ import {onMounted, ref} from "vue";
 import GameCard from "@/components/gameCard.vue";
 
 const games = ref([])
+const favGamesIDs = ref([])
 const loading = ref(true)
 const error = ref('')
 
@@ -11,13 +12,18 @@ async function loadGames() {
     error.value = '';
 
     try {
-        const response = await fetch('http://localhost:3000/games'); // TODO: CHANGE BACK TO '/api/games'
-
+        const response = await fetch('/api/games');
         if (!response.ok) {
             throw new Error('Failed to load games');
         }
-
         const data = await response.json();
+
+        const favResponse = await fetch('/api/favorites');
+        if(!favResponse.ok) {
+            throw new Error('Failed to load favorites')
+        }
+        const favData = await favResponse.json()
+        favGamesIDs.value = favData.map(favGame => favGame.id)
 
         games.value = data.map((game) => ({
             id: game.id,
@@ -26,20 +32,24 @@ async function loadGames() {
             rules: game.rules,
             img: game.img,
             route: game.route,
-            enabled: game.enabled
+            enabled: game.enabled,
+            favorite: favGamesIDs.value.includes(game.id)
         }))
-
-        const favResponse = await fetch('http://localhost:3000/fav');
-
-        if(!favResponse.ok) {
-            throw new Error('Failed to load favorites')
-        }
 
     } catch (err) {
         error.value = err.message || 'Something went wrong while loading games'
     } finally {
         loading.value = false;
     }
+}
+
+async function favoriteGame(game_id) {
+    const favResponse = await fetch(`/api/favorites/${game_id}`, {
+        method: 'POST',
+    });
+
+    const data = await favResponse.json();
+    loadGames()
 }
 
 onMounted(() => {
@@ -64,6 +74,8 @@ onMounted(() => {
                     :img="game.img"
                     :route="game.route"
                     :enabled="game.enabled"
+                    :favorite="game.favorite"
+                    @favorite-game="favoriteGame(game.id)"
                 ></GameCard>
             </v-col>
         </v-row>

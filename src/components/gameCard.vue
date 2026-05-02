@@ -5,7 +5,7 @@ const props = defineProps({
     img: { type: String, required: true },
     route: { type: String, required: true },
     enabled: { type: Number, default: false, required: true }, // 0 or 1
-    favorite: { type: Number, default: false, required: true }, // TODO: finish favorite-ing games
+    favorite: { type: Boolean, default: false, required: true },
 })
 
 const emit = defineEmits(['favorite-game']);
@@ -20,8 +20,15 @@ const emit = defineEmits(['favorite-game']);
             <v-icon start>mdi-play-circle-outline</v-icon>
             Play!
         </v-btn>
-        <v-btn class="mr-5 mb-5 left" @click="emit('favorite-game')">
-            <v-icon start>mdi-heart-outline</v-icon>
+        <v-btn class="favorite-btn mb-5 mr-5" @click="emit('favorite-game')">
+            <v-icon v-if="!favorite">mdi-heart-outline</v-icon>
+            <v-icon v-if="favorite">mdi-heart</v-icon>
         </v-btn>
     </v-card>
 </template>
+
+<style scoped>
+    .favorite-btn {
+        margin-left: 368px;
+    }
+</style>
