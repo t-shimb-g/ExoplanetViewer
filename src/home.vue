@@ -13,7 +13,7 @@ async function loadGames() {
     error.value = '';
 
     try {
-        const response = await fetch('http://localhost:3000/games') // TODO: Change back to /api/games
+        const response = await fetch('/api/games') // TODO: Change back to /api/games
         if (!response.ok) {
             throw new Error('Failed to load games');
         }
@@ -21,7 +21,7 @@ async function loadGames() {
         gameImgs.value = data.map(game => game.img)
         console.log(gameImgs.value);
 
-        const favResponse = await fetch('http://localhost:3000/favorites')
+        const favResponse = await fetch('/api/favorites')
         if (!favResponse.ok) {
             throw new Error('Failed to load games');
         }
